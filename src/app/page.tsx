@@ -7,7 +7,7 @@ import NewsHighlights from '@/components/sections/news-highlights';
 import PartnerLogos from '@/components/sections/partner-logos';
 
 // Mock Data for Tech Company News
-export const mockNewsItems = [
+const mockNewsItems = [
 	{
 		id: 1,
 		slug: 'zemenay-launches-ai-powered-analytics-platform',
@@ -75,6 +75,7 @@ export const mockNewsItems = [
     `,
 	},
 ];
+
 export type NewsItemType = {
   id: number;
   slug: string;
@@ -84,6 +85,16 @@ export type NewsItemType = {
   imageUrl: string;
   category: string;
   content: string;
+};
+
+export type TestimonialType = {
+  id: number;
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+  rating: number;
+  avatar: string;
 };
 
 // Mock Data for Partner Logos

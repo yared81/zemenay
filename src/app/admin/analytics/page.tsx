@@ -2,16 +2,13 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Progress } from '@/components/ui/progress';
 import { 
   TrendingUp, 
   Users, 
   Eye, 
   MousePointer, 
   BarChart3,
-  Calendar,
-  PieChart,
-  Activity
+  Calendar
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -141,7 +138,7 @@ const AnalyticsPage = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
-                  <PieChart className="h-5 w-5 mr-2" />
+                  {/* PieChart icon was removed, so it's commented out or removed */}
                   Traffic Sources
                 </CardTitle>
               </CardHeader>
@@ -173,7 +170,7 @@ const AnalyticsPage = () => {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
-                <Activity className="h-5 w-5 mr-2" />
+                {/* Activity icon was removed, so it's commented out or removed */}
                 Recent Activity
               </CardTitle>
             </CardHeader>

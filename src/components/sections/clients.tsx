@@ -56,7 +56,7 @@ const ClientShowcase = () => {
             <span className="block gradient-text">Stories</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We've helped leading Ethiopian companies transform their businesses 
+            We&apos;ve helped leading Ethiopian companies transform their businesses 
             with innovative technology solutions that drive real results.
           </p>
         </div>
@@ -113,7 +113,7 @@ const ClientShowcase = () => {
             </h3>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               Ready to transform your business with cutting-edge technology solutions? 
-              Let's discuss how we can help you achieve your goals.
+              Let&apos;s discuss how we can help you achieve your goals.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button className="px-8 py-4 bg-primary hover:bg-primary-darker text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">

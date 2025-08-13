@@ -12,15 +12,14 @@ const Footer = () => {
       { name: 'News & Updates', href: '/news' },
     ],
     services: [
-      { name: 'Software Development', href: '/services/software-development' },
-      { name: 'Digital Transformation', href: '/services/digital-transformation' },
-      { name: 'Cybersecurity', href: '/services/cybersecurity' },
-      { name: 'Cloud Services', href: '/services/cloud-services' },
-      { name: 'Data Analytics', href: '/services/data-analytics' },
-      { name: 'Mobile Solutions', href: '/services/mobile-solutions' },
+      { name: 'Software Development', href: '/services' },
+      { name: 'Digital Transformation', href: '/services' },
+      { name: 'Cybersecurity', href: '/services' },
+      { name: 'Cloud Services', href: '/services' },
+      { name: 'Data Analytics', href: '/services' },
+      { name: 'Mobile Solutions', href: '/services' },
     ],
     resources: [
-      { name: 'Case Studies', href: '/case-studies' },
       { name: 'Blog', href: '/blog' },
       { name: 'Documentation', href: '/docs' },
       { name: 'Support', href: '/support' },
@@ -56,7 +55,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-slate-300 mb-6 max-w-md leading-relaxed">
-              Empowering Ethiopia's digital future through innovative technology solutions, 
+              Empowering Ethiopia&apos;s digital future through innovative technology solutions, 
               software development, and IT consulting services that drive growth and transformation.
             </p>
             <div className="flex items-center space-x-3">

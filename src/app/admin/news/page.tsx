@@ -1,10 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { 
   Plus, 
@@ -14,8 +13,7 @@ import {
   Trash2, 
   Eye, 
   Calendar,
-  User,
-  Tag
+  User
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -66,7 +64,6 @@ const NewsManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [categoryFilter, setCategoryFilter] = useState('all');
-  const [showCreateForm, setShowCreateForm] = useState(false);
 
   const filteredNews = mockNews.filter(news => {
     const matchesSearch = news.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -106,10 +103,12 @@ const NewsManagement = () => {
               <p className="text-muted-foreground">Create and manage news articles</p>
             </div>
             <div className="flex items-center space-x-4">
-              <Button onClick={() => setShowCreateForm(!showCreateForm)}>
-                <Plus className="h-4 w-4 mr-2" />
-                Create News
-              </Button>
+              <Link href="/admin/news/create">
+                <Button>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Create News
+                </Button>
+              </Link>
               <Link href="/admin">
                 <Button variant="outline">Back to Dashboard</Button>
               </Link>
@@ -119,118 +118,48 @@ const NewsManagement = () => {
       </div>
 
       <div className="container mx-auto px-6 py-8">
-        {/* Create News Form */}
-        {showCreateForm && (
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle>Create New Article</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium mb-2">Title</label>
-                  <Input placeholder="Enter article title" />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Category</label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="business">Business</SelectItem>
-                      <SelectItem value="technology">Technology</SelectItem>
-                      <SelectItem value="partnerships">Partnerships</SelectItem>
-                      <SelectItem value="announcements">Announcements</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+        {/* Search and Filters */}
+        <div className="mb-6 flex flex-col sm:flex-row gap-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              placeholder="Search articles..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          
+          <Select value={statusFilter} onValueChange={setStatusFilter}>
+            <SelectTrigger>
+              <SelectValue placeholder="Filter by status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Status</SelectItem>
+              <SelectItem value="published">Published</SelectItem>
+              <SelectItem value="draft">Draft</SelectItem>
+              <SelectItem value="archived">Archived</SelectItem>
+            </SelectContent>
+          </Select>
 
-                <div>
-                  <label className="block text-sm font-medium mb-2">Status</label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="draft">Draft</SelectItem>
-                      <SelectItem value="published">Published</SelectItem>
-                      <SelectItem value="archived">Archived</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+          <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+            <SelectTrigger>
+              <SelectValue placeholder="Filter by category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Categories</SelectItem>
+              <SelectItem value="Business">Business</SelectItem>
+              <SelectItem value="Technology">Technology</SelectItem>
+              <SelectItem value="Partnerships">Partnerships</SelectItem>
+              <SelectItem value="Announcements">Announcements</SelectItem>
+            </SelectContent>
+          </Select>
 
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium mb-2">Excerpt</label>
-                  <Textarea placeholder="Brief description of the article" rows={3} />
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium mb-2">Content</label>
-                  <Textarea placeholder="Full article content" rows={8} />
-                </div>
-
-                <div className="md:col-span-2 flex justify-end space-x-4">
-                  <Button variant="outline" onClick={() => setShowCreateForm(false)}>
-                    Cancel
-                  </Button>
-                  <Button>
-                    <Plus className="h-4 w-4 mr-2" />
-                    Create Article
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* Filters and Search */}
-        <Card className="mb-6">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input
-                  placeholder="Search articles..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-              
-              <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Filter by status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="published">Published</SelectItem>
-                  <SelectItem value="draft">Draft</SelectItem>
-                  <SelectItem value="archived">Archived</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Filter by category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
-                  <SelectItem value="Business">Business</SelectItem>
-                  <SelectItem value="Technology">Technology</SelectItem>
-                  <SelectItem value="Partnerships">Partnerships</SelectItem>
-                  <SelectItem value="Announcements">Announcements</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Button variant="outline" className="flex items-center justify-center">
-                <Filter className="h-4 w-4 mr-2" />
-                Clear Filters
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+          <Button variant="outline" className="flex items-center justify-center">
+            <Filter className="h-4 w-4 mr-2" />
+            Clear Filters
+          </Button>
+        </div>
 
         {/* News Articles List */}
         <div className="space-y-4">

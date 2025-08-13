@@ -62,32 +62,35 @@ const AdminDashboard = () => {
       <div className="container mx-auto px-6 py-8">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {stats.map((stat, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
-                    <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+          {stats.map((stat, index) => {
+            const IconComponent = stat.icon;
+            return (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
+                      <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                    </div>
+                    <div className={`p-3 rounded-lg ${stat.icon === Users ? 'bg-blue-100 text-blue-600' : 
+                      stat.icon === Newspaper ? 'bg-green-100 text-green-600' : 
+                      stat.icon === FileText ? 'bg-purple-100 text-purple-600' : 
+                      'bg-orange-100 text-orange-600'}`}>
+                      <IconComponent className="h-6 w-6" />
+                    </div>
                   </div>
-                  <div className={`p-3 rounded-lg ${stat.icon === Users ? 'bg-blue-100 text-blue-600' : 
-                    stat.icon === Newspaper ? 'bg-green-100 text-green-600' : 
-                    stat.icon === FileText ? 'bg-purple-100 text-purple-600' : 
-                    'bg-orange-100 text-orange-600'}`}>
-                    <stat.icon className="h-6 w-6" />
+                  <div className="mt-4 flex items-center">
+                    <span className={`text-sm font-medium ${
+                      stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
+                    }`}>
+                      {stat.change}
+                    </span>
+                    <span className="text-sm text-muted-foreground ml-2">from last month</span>
                   </div>
-                </div>
-                <div className="mt-4 flex items-center">
-                  <span className={`text-sm font-medium ${
-                    stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
-                  }`}>
-                    {stat.change}
-                  </span>
-                  <span className="text-sm text-muted-foreground ml-2">from last month</span>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -101,18 +104,21 @@ const AdminDashboard = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                {quickActions.map((action, index) => (
-                  <Link key={index} href={action.href}>
-                    <Button 
-                      variant="outline" 
-                      className="w-full justify-start hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      <div className={`w-3 h-3 rounded-full mr-3 ${action.color}`}></div>
-                      <action.icon className="h-4 w-4 mr-2" />
-                      {action.title}
-                    </Button>
-                  </Link>
-                ))}
+                {quickActions.map((action, index) => {
+                  const IconComponent = action.icon;
+                  return (
+                    <Link key={index} href={action.href}>
+                      <Button 
+                        variant="outline" 
+                        className="w-full justify-start hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        <div className={`w-3 h-3 rounded-full mr-3 ${action.color}`}></div>
+                        <IconComponent className="h-4 w-4 mr-2" />
+                        {action.title}
+                      </Button>
+                    </Link>
+                  );
+                })}
               </CardContent>
             </Card>
           </div>

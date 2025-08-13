@@ -1,10 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { 
   Plus, 
@@ -15,7 +14,6 @@ import {
   Eye, 
   Calendar,
   User,
-  Tag,
   BookOpen,
   Clock
 } from 'lucide-react';
@@ -89,7 +87,6 @@ const BlogManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [categoryFilter, setCategoryFilter] = useState('all');
-  const [showCreateForm, setShowCreateForm] = useState(false);
 
   const filteredBlogPosts = mockBlogPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -131,10 +128,12 @@ const BlogManagement = () => {
               <p className="text-muted-foreground">Create and manage blog posts</p>
             </div>
             <div className="flex items-center space-x-4">
-              <Button onClick={() => setShowCreateForm(!showCreateForm)}>
-                <Plus className="h-4 w-4 mr-2" />
-                Write Blog Post
-              </Button>
+              <Link href="/admin/blog/create">
+                <Button>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Write Blog Post
+                </Button>
+              </Link>
               <Link href="/admin">
                 <Button variant="outline">Back to Dashboard</Button>
               </Link>
@@ -144,125 +143,49 @@ const BlogManagement = () => {
       </div>
 
       <div className="container mx-auto px-6 py-8">
-        {/* Create Blog Post Form */}
-        {showCreateForm && (
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle>Create New Blog Post</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium mb-2">Title</label>
-                  <Input placeholder="Enter blog post title" />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Category</label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="technology">Technology</SelectItem>
-                      <SelectItem value="cybersecurity">Cybersecurity</SelectItem>
-                      <SelectItem value="digital-transformation">Digital Transformation</SelectItem>
-                      <SelectItem value="cloud-services">Cloud Services</SelectItem>
-                      <SelectItem value="business">Business</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+        {/* Search and Filters */}
+        <div className="mb-6 flex flex-col sm:flex-row gap-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              placeholder="Search blog posts..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          
+          <Select value={statusFilter} onValueChange={setStatusFilter}>
+            <SelectTrigger>
+              <SelectValue placeholder="Filter by status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Status</SelectItem>
+              <SelectItem value="published">Published</SelectItem>
+              <SelectItem value="draft">Draft</SelectItem>
+              <SelectItem value="archived">Archived</SelectItem>
+            </SelectContent>
+          </Select>
 
-                <div>
-                  <label className="block text-sm font-medium mb-2">Status</label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="draft">Draft</SelectItem>
-                      <SelectItem value="published">Published</SelectItem>
-                      <SelectItem value="archived">Archived</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+          <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+            <SelectTrigger>
+              <SelectValue placeholder="Filter by category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Categories</SelectItem>
+              <SelectItem value="Technology">Technology</SelectItem>
+              <SelectItem value="Cybersecurity">Cybersecurity</SelectItem>
+              <SelectItem value="Digital Transformation">Digital Transformation</SelectItem>
+              <SelectItem value="Cloud Services">Cloud Services</SelectItem>
+              <SelectItem value="Business">Business</SelectItem>
+            </SelectContent>
+          </Select>
 
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium mb-2">Tags</label>
-                  <Input placeholder="Enter tags separated by commas" />
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium mb-2">Excerpt</label>
-                  <Textarea placeholder="Brief description of the blog post" rows={3} />
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium mb-2">Content</label>
-                  <Textarea placeholder="Full blog post content" rows={12} />
-                </div>
-
-                <div className="md:col-span-2 flex justify-end space-x-4">
-                  <Button variant="outline" onClick={() => setShowCreateForm(false)}>
-                    Cancel
-                  </Button>
-                  <Button>
-                    <Plus className="h-4 w-4 mr-2" />
-                    Create Blog Post
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* Filters and Search */}
-        <Card className="mb-6">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input
-                  placeholder="Search blog posts..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-              
-              <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Filter by status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="published">Published</SelectItem>
-                  <SelectItem value="draft">Draft</SelectItem>
-                  <SelectItem value="archived">Archived</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Filter by category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
-                  <SelectItem value="Technology">Technology</SelectItem>
-                  <SelectItem value="Cybersecurity">Cybersecurity</SelectItem>
-                  <SelectItem value="Digital Transformation">Digital Transformation</SelectItem>
-                  <SelectItem value="Cloud Services">Cloud Services</SelectItem>
-                  <SelectItem value="Business">Business</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Button variant="outline" className="flex items-center justify-center">
-                <Filter className="h-4 w-4 mr-2" />
-                Clear Filters
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+          <Button variant="outline" className="flex items-center justify-center">
+            <Filter className="h-4 w-4 mr-2" />
+            Clear Filters
+          </Button>
+        </div>
 
         {/* Blog Posts List */}
         <div className="space-y-4">

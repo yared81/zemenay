@@ -58,7 +58,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
       
       {/* Quote */}
       <blockquote className="text-lg text-foreground leading-relaxed mb-6 italic">
-        "{testimonial.quote}"
+        &quot;{testimonial.quote}&quot;
       </blockquote>
       
       {/* Author */}
@@ -96,8 +96,8 @@ const Testimonials = () => {
             <span className="block gradient-text">Say</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Don't just take our word for it. Here's what industry leaders say about 
-            working with Zemenay and the results we've delivered.
+            Don&apos;t just take our word for it. Here&apos;s what industry leaders say about 
+            working with Zemenay and the results we&apos;ve delivered.
           </p>
         </div>
 

@@ -5,22 +5,17 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { 
-  Shield, 
   Download, 
   Upload, 
-  Trash2, 
   RefreshCw, 
-  AlertTriangle,
-  CheckCircle,
-  Clock,
-  Database,
+  CheckCircle, 
+  AlertCircle,
   HardDrive,
-  Lock,
-  Eye,
-  EyeOff
+  Cloud,
+  Database,
+  Shield
 } from 'lucide-react';
 import Link from 'next/link';
-import { Label } from '@/components/ui/label';
 
 const BackupSecurityPage = () => {
   const [backupProgress, setBackupProgress] = useState(0);
@@ -107,30 +102,12 @@ const BackupSecurityPage = () => {
     }, 500);
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'healthy': return 'text-green-600';
-      case 'warning': return 'text-yellow-600';
-      case 'critical': return 'text-red-600';
-      default: return 'text-gray-600';
-    }
-  };
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'healthy': return <CheckCircle className="h-5 w-5 text-green-600" />;
-      case 'warning': return <AlertTriangle className="h-5 w-5 text-yellow-600" />;
-      case 'critical': return <AlertTriangle className="h-5 w-5 text-red-600" />;
-      default: return <Clock className="h-5 w-5 text-gray-600" />;
-    }
-  };
-
   const getAlertIcon = (type: string) => {
     switch (type) {
-      case 'critical': return <AlertTriangle className="h-5 w-5 text-red-600" />;
-      case 'warning': return <AlertTriangle className="h-5 w-5 text-yellow-600" />;
-      case 'info': return <Eye className="h-5 w-5 text-blue-600" />;
-      default: return <Eye className="h-5 w-5 text-gray-600" />;
+      case 'critical': return <AlertCircle className="h-5 w-5 text-red-600" />;
+      case 'warning': return <AlertCircle className="h-5 w-5 text-yellow-600" />;
+      case 'info': return <Cloud className="h-5 w-5 text-blue-600" />;
+      default: return <Cloud className="h-5 w-5 text-gray-600" />;
     }
   };
 
@@ -336,7 +313,7 @@ const BackupSecurityPage = () => {
                         </div>
                       </div>
                       <Button variant="outline" size="sm">
-                        {alert.resolved ? <CheckCircle className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
+                        {alert.resolved ? <CheckCircle className="h-3 w-3" /> : <Cloud className="h-3 w-3" />}
                       </Button>
                     </div>
                   </div>
@@ -352,14 +329,14 @@ const BackupSecurityPage = () => {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
-                <Lock className="h-5 w-5 mr-2" />
+                <Shield className="h-5 w-5 mr-2" />
                 Access Control
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <Label className="text-sm font-medium">IP Whitelist</Label>
+                  <p className="text-sm font-medium">IP Whitelist</p>
                   <p className="text-xs text-muted-foreground">Restrict admin access to specific IPs</p>
                 </div>
                 <Button variant="outline" size="sm">
@@ -369,7 +346,7 @@ const BackupSecurityPage = () => {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <Label className="text-sm font-medium">Session Management</Label>
+                  <p className="text-sm font-medium">Session Management</p>
                   <p className="text-xs text-muted-foreground">View and manage active sessions</p>
                 </div>
                 <Button variant="outline" size="sm">
@@ -379,7 +356,7 @@ const BackupSecurityPage = () => {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <Label className="text-sm font-medium">Audit Log</Label>
+                  <p className="text-sm font-medium">Audit Log</p>
                   <p className="text-xs text-muted-foreground">Review system activity logs</p>
                 </div>
                 <Button variant="outline" size="sm">
@@ -393,14 +370,14 @@ const BackupSecurityPage = () => {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
-                <AlertTriangle className="h-5 w-5 mr-2" />
+                <AlertCircle className="h-5 w-5 mr-2" />
                 Threat Prevention
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <Label className="text-sm font-medium">Firewall Rules</Label>
+                  <p className="text-sm font-medium">Firewall Rules</p>
                   <p className="text-xs text-muted-foreground">Configure network security rules</p>
                 </div>
                 <Button variant="outline" size="sm">
@@ -410,7 +387,7 @@ const BackupSecurityPage = () => {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <Label className="text-sm font-medium">Malware Scanning</Label>
+                  <p className="text-sm font-medium">Malware Scanning</p>
                   <p className="text-xs text-muted-foreground">Scan for malicious files</p>
                 </div>
                 <Button variant="outline" size="sm">
@@ -420,7 +397,7 @@ const BackupSecurityPage = () => {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <Label className="text-sm font-medium">Vulnerability Assessment</Label>
+                  <p className="text-sm font-medium">Vulnerability Assessment</p>
                   <p className="text-xs text-muted-foreground">Check for security vulnerabilities</p>
                 </div>
                 <Button variant="outline" size="sm">

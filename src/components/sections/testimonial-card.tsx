@@ -11,7 +11,7 @@ interface TestimonialCardProps {
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, className }) => {
-  const { quote, name, role, avatarUrl } = testimonial;
+  const { quote, name, role, avatar } = testimonial;
 
   return (
     <div className={cn("bg-card p-6 rounded-lg shadow-lg flex flex-col items-center text-center h-full", className)}>
@@ -20,9 +20,9 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, classNam
         “{quote}”
       </p>
       <div className="flex flex-col items-center">
-        {avatarUrl && (
+        {avatar && (
           <div className="relative w-16 h-16 rounded-full overflow-hidden mb-3 border-2 border-primary/50">
-            <Image src={avatarUrl} alt={name} layout="fill" objectFit="cover" />
+            <Image src={avatar} alt={name} layout="fill" objectFit="cover" />
           </div>
         )}
         <p className="font-semibold text-foreground">{name}</p>

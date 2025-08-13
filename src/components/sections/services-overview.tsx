@@ -1,7 +1,7 @@
 // src/components/home-ui/services-overview.tsx
 import React from 'react';
 import Link from 'next/link';
-import { Code, Globe, Shield, Database, Smartphone, Cloud, Users, TrendingUp, ArrowRight } from 'lucide-react';
+import { Code, Globe, Shield, Database, Smartphone, Cloud, TrendingUp, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -115,7 +115,6 @@ const ServicesOverview = () => {
               description={service.description}
               features={service.features}
               className="animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
             />
           ))}
         </div>
@@ -127,7 +126,7 @@ const ServicesOverview = () => {
               Ready to Transform Your Business?
             </h3>
             <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
-              Let's discuss how our technology solutions can help you achieve your goals 
+              Let&apos;s discuss how our technology solutions can help you achieve your goals 
               and stay ahead of the competition.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

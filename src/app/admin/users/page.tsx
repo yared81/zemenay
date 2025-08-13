@@ -9,17 +9,12 @@ import {
   Plus, 
   Search, 
   Filter, 
-  Edit, 
-  Trash2, 
+  User, 
   Eye, 
-  Calendar,
-  User,
-  Shield,
+  Edit, 
+  Trash2,
   Mail,
-  Phone,
-  MoreHorizontal,
-  CheckCircle,
-  XCircle
+  Phone
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -92,7 +87,6 @@ const UserManagement = () => {
   const [roleFilter, setRoleFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [departmentFilter, setDepartmentFilter] = useState('all');
-  const [showCreateForm, setShowCreateForm] = useState(false);
 
   const filteredUsers = mockUsers.filter(user => {
     const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -145,10 +139,12 @@ const UserManagement = () => {
               <p className="text-muted-foreground">Manage user accounts and roles</p>
             </div>
             <div className="flex items-center space-x-4">
-              <Button onClick={() => setShowCreateForm(!showCreateForm)}>
-                <Plus className="h-4 w-4 mr-2" />
-                Add User
-              </Button>
+              <Link href="/admin/users/create">
+                <Button>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add User
+                </Button>
+              </Link>
               <Link href="/admin">
                 <Button variant="outline">Back to Dashboard</Button>
               </Link>
@@ -158,93 +154,7 @@ const UserManagement = () => {
       </div>
 
       <div className="container mx-auto px-6 py-8">
-        {/* Create User Form */}
-        {showCreateForm && (
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle>Add New User</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Full Name</label>
-                  <Input placeholder="Enter full name" />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium mb-2">Email</label>
-                  <Input type="email" placeholder="Enter email address" />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Phone</label>
-                  <Input placeholder="Enter phone number" />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Department</label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select department" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="it">IT</SelectItem>
-                      <SelectItem value="marketing">Marketing</SelectItem>
-                      <SelectItem value="sales">Sales</SelectItem>
-                      <SelectItem value="content">Content</SelectItem>
-                      <SelectItem value="support">Support</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Role</label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select role" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="user">User</SelectItem>
-                      <SelectItem value="editor">Editor</SelectItem>
-                      <SelectItem value="admin">Admin</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2">Status</label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="active">Active</SelectItem>
-                      <SelectItem value="inactive">Inactive</SelectItem>
-                      <SelectItem value="suspended">Suspended</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium mb-2">Password</label>
-                  <Input type="password" placeholder="Enter password" />
-                </div>
-
-                <div className="md:col-span-2 flex justify-end space-x-4">
-                  <Button variant="outline" onClick={() => setShowCreateForm(false)}>
-                    Cancel
-                  </Button>
-                  <Button>
-                    <Plus className="h-4 w-4 mr-2" />
-                    Create User
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* Filters and Search */}
+        {/* Search and Filters */}
         <Card className="mb-6">
           <CardContent className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4">

@@ -1,15 +1,10 @@
 // src/components/home-ui/hero.tsx
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Code, Globe, Zap, Shield, Users, TrendingUp, Play } from 'lucide-react';
 
 const HeroSection = () => {
-  // Animation variants (temporarily disabled for compatibility)
-  const containerVariants = {};
-  const itemVariants = {};
-  const cardVariants = {};
 
   const features = [
     { icon: Code, text: 'Software Development', color: 'from-blue-500 to-blue-600' },
@@ -58,7 +53,7 @@ const HeroSection = () => {
             <span 
               className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent mt-2"
             >
-              Ethiopia's Digital
+              Ethiopia&apos;s Digital
             </span>
             <span 
               className="block text-slate-800 dark:text-slate-100 mt-2"
