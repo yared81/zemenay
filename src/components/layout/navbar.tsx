@@ -84,6 +84,9 @@ export function Navbar() {
               <Moon className="h-5 w-5 text-blue-600" />
             )}
           </Button>
+          <Button asChild variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 transform hover:scale-105">
+            <Link href="/admin/login">Admin</Link>
+          </Button>
           <Button asChild className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-2 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-lg">
             <Link href="/contact">Get Started</Link>
           </Button>
@@ -123,6 +126,9 @@ export function Navbar() {
                     )}
                   </Button>
                 </div>
+                <Button asChild variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg font-medium transition-all duration-200 mb-3">
+                  <Link href="/admin/login">Admin Panel</Link>
+                </Button>
                 <Button asChild className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-medium transition-all duration-200">
                   <Link href="/contact">Get Started</Link>
                 </Button>
