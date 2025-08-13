@@ -4,7 +4,6 @@ import ServicesOverview from '@/components/sections/services-overview';
 import ClientShowcase from '@/components/sections/clients';
 import Testimonials from '@/components/sections/testimonials';
 import NewsHighlights from '@/components/sections/news-highlights';
-import PartnerLogos from '@/components/sections/partner-logos';
 
 // Mock Data for Tech Company News
 const mockNewsItems = [
@@ -97,40 +96,12 @@ export type TestimonialType = {
   avatar: string;
 };
 
-// Mock Data for Partner Logos
-const mockPartnerLogos = [
-	{
-		id: 1,
-		name: 'Efuye Gela',
-		logoUrl: '/assets/images/partners/efuye_gela.png',
-	},
-	{
-		id: 2,
-		name: 'Chewata Awaqi',
-		logoUrl: '/assets/images/partners/chewata_awaqi.png',
-	},
-	{
-		id: 3,
-		name: 'Busara',
-		logoUrl: '/assets/images/partners/busara.webp',
-	},
-	{
-		id: 4,
-		name: 'Ethio Telecom',
-		logoUrl: '/assets/images/partners/efuye_gela.png',
-	},
-	{
-		id: 5,
-		name: 'Commercial Bank of Ethiopia',
-		logoUrl: '/assets/images/partners/chewata_awaqi.png',
-	},
-	{
-		id: 6,
-		name: 'Ethiopian Airlines',
-		logoUrl: '/assets/images/partners/busara.webp',
-	},
-];
-export type PartnerLogoType = (typeof mockPartnerLogos)[0];
+// Partner Logos type (temporarily disabled)
+export type PartnerLogoType = {
+	id: number;
+	name: string;
+	logoUrl: string;
+};
 
 const HomePage = () => {
 	return (
@@ -140,7 +111,8 @@ const HomePage = () => {
 			<ClientShowcase />
 			<Testimonials />
 			<NewsHighlights newsItems={mockNewsItems} />
-			<PartnerLogos logos={mockPartnerLogos} />
+			{/* Temporarily disabled due to React.Children.only error */}
+			{/* <PartnerLogos logos={mockPartnerLogos} /> */}
 		</main>
 	);
 };

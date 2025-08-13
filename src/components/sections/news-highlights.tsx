@@ -19,12 +19,14 @@ const NewsHighlights: React.FC<NewsHighlightsProps> = ({ newsItems }) => {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 md:mb-0">
             Latest News
           </h2>
-          <Link href="/news" passHref legacyBehavior>
-            <Button variant="outline" className="border-muted-foreground/50 text-muted-foreground hover:bg-accent hover:text-accent-foreground">
-              View All News
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
+          <Button asChild variant="outline" className="border-muted-foreground/50 text-muted-foreground hover:bg-accent hover:text-accent-foreground">
+            <Link href="/news">
+              <span className="flex items-center">
+                View All News
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </span>
+            </Link>
+          </Button>
         </div>
         {displayNews.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">

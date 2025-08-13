@@ -1,8 +1,5 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { verify } from 'jsonwebtoken';
-
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this';
 
 export function middleware(request: NextRequest) {
   // Check if the request is for admin routes
@@ -12,30 +9,16 @@ export function middleware(request: NextRequest) {
       return NextResponse.next();
     }
 
-    // Get the admin token from cookies
-    const token = request.cookies.get('admin_token')?.value;
+    // Check if admin is logged in via simple cookie
+    const isLoggedIn = request.cookies.get('admin_logged_in')?.value === 'true';
 
-    if (!token) {
-      // Redirect to login if no token
+    if (!isLoggedIn) {
+      // Redirect to login if not logged in
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
 
-    try {
-      // Verify the JWT token
-      const decoded = verify(token, JWT_SECRET) as { exp?: number };
-      
-      // Check if token is expired
-      if (decoded.exp && Date.now() >= decoded.exp * 1000) {
-        // Token expired, redirect to login
-        return NextResponse.redirect(new URL('/admin/login', request.url));
-      }
-
-      // Token is valid, continue
-      return NextResponse.next();
-    } catch {
-      // Invalid token, redirect to login
-      return NextResponse.redirect(new URL('/admin/login', request.url));
-    }
+    // Admin is logged in, continue
+    return NextResponse.next();
   }
 
   return NextResponse.next();

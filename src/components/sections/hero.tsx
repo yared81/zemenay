@@ -75,22 +75,22 @@ const HeroSection = () => {
           <div 
             className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
           >
-            <div>
-              <Button asChild size="lg" className="px-8 py-4 text-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl rounded-xl">
-                <Link href="/contact">
+            <Button asChild size="lg" className="px-8 py-4 text-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl rounded-xl">
+              <Link href="/contact">
+                <span className="flex items-center">
                   Get Started Today
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-            <div>
-              <Button asChild size="lg" variant="outline" className="px-8 py-4 text-lg border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105 rounded-xl">
-                <Link href="/services">
+                </span>
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="px-8 py-4 text-lg border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105 rounded-xl">
+              <Link href="/services">
+                <span className="flex items-center">
                   <Play className="mr-2 h-5 w-5" />
                   View Services
-                </Link>
-              </Button>
-            </div>
+                </span>
+              </Link>
+            </Button>
           </div>
 
           {/* Features Grid */}

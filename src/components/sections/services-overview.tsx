@@ -132,8 +132,10 @@ const ServicesOverview = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button asChild size="lg" className="px-8 py-4 text-lg bg-white text-blue-600 hover:bg-blue-50 transition-all duration-300 hover:scale-105 shadow-lg">
                 <Link href="/contact">
-                  Schedule a Consultation
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <span className="flex items-center">
+                    Schedule a Consultation
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </span>
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="px-8 py-4 text-lg border-2 border-white text-white hover:bg-white hover:text-blue-600 transition-all duration-300 hover:scale-105">

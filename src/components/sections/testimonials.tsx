@@ -1,5 +1,7 @@
 // src/components/home-ui/testimonials.tsx
 import React from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import { Star, Quote } from 'lucide-react';
 
 const testimonials = [
@@ -10,7 +12,7 @@ const testimonials = [
     role: 'CTO, Ethio Telecom',
     company: 'Ethio Telecom',
     rating: 5,
-    avatar: '/src/assets/images/executive_members/Natnael_Alemayehu_Hailu.jpg'
+    avatar: '/assets/images/executive_members/Natnael_Alemayehu_Hailu.jpg'
   },
   {
     id: 2,
@@ -19,7 +21,7 @@ const testimonials = [
     role: 'Head of IT',
     company: 'Commercial Bank of Ethiopia',
     rating: 5,
-    avatar: '/src/assets/images/executive_members/Tihitina_Askal.jpg'
+    avatar: '/assets/images/executive_members/Tihitina_Askal.jpg'
   },
   {
     id: 3,
@@ -28,7 +30,7 @@ const testimonials = [
     role: 'IT Director',
     company: 'Ethiopian Airlines',
     rating: 5,
-    avatar: '/src/assets/images/executive_members/Yared_Endale.jpg'
+    avatar: '/assets/images/executive_members/Yared_Endale.jpg'
   },
   {
     id: 4,
@@ -37,7 +39,7 @@ const testimonials = [
     role: 'Security Manager',
     company: 'Ethiopian Electric Power',
     rating: 5,
-    avatar: '/src/assets/images/executive_members/Tihitina_Askal.webp'
+    avatar: '/assets/images/executive_members/Tihitina_Askal.webp'
   }
 ];
 
@@ -139,12 +141,12 @@ const Testimonials = () => {
               with our innovative technology solutions.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="px-8 py-4 bg-primary hover:bg-primary-darker text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-                Start Your Project
-              </button>
-              <button className="px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105">
-                Schedule a Call
-              </button>
+              <Button asChild className="px-8 py-4 bg-primary hover:bg-primary-darker text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+                <Link href="/contact">Start Your Project</Link>
+              </Button>
+              <Button asChild variant="outline" className="px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105">
+                <Link href="/contact">Schedule a Call</Link>
+              </Button>
             </div>
           </div>
         </div>

@@ -17,12 +17,17 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, classNam
     <div className={cn("bg-card p-6 rounded-lg shadow-lg flex flex-col items-center text-center h-full", className)}>
       <Quote className="h-8 w-8 text-primary mb-4" />
       <p className="text-base text-muted-foreground italic mb-6 flex-grow leading-relaxed">
-        “{quote}”
+        &ldquo;{quote}&rdquo;
       </p>
       <div className="flex flex-col items-center">
         {avatar && (
           <div className="relative w-16 h-16 rounded-full overflow-hidden mb-3 border-2 border-primary/50">
-            <Image src={avatar} alt={name} layout="fill" objectFit="cover" />
+            <Image 
+              src={avatar} 
+              alt={name} 
+              fill 
+              className="object-cover"
+            />
           </div>
         )}
         <p className="font-semibold text-foreground">{name}</p>
