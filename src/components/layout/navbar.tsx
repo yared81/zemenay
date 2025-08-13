@@ -30,12 +30,12 @@ export function Navbar() {
   }
 
   const getLogoSrc = () => {
-    if (!mounted) return '/src/assets/fonts/Zemenay Logo Black.png'
+    if (!mounted) return '/fonts/Zemenay Logo Black.png'
     
     if (theme === 'dark') {
-      return '/src/assets/fonts/Zemenay Logo White.png'
+      return '/fonts/Zemenay Logo White.png'
     } else {
-      return '/src/assets/fonts/Zemenay Logo Black.png'
+      return '/fonts/Zemenay Logo Black.png'
     }
   }
 
