@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
 import { cookies } from 'next/headers';
 import { sign } from 'jsonwebtoken';
 
@@ -19,24 +18,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check admin credentials against Supabase
-    const { data, error } = await supabase
-      .from('admin_users')
-      .select('*')
-      .eq('username', username)
-      .eq('is_active', true)
-      .single();
-
-    if (error || !data) {
-      return NextResponse.json(
-        { error: 'Invalid credentials' },
-        { status: 401 }
-      );
-    }
-
-    // In production, you should hash passwords and compare hashes
-    // For now, we'll do a simple comparison (NOT recommended for production)
-    if (data.password !== password) {
+    // Temporary hardcoded admin credentials for demo purposes
+    // In production, this should use a proper database with hashed passwords
+    if (username === 'admin' && password === 'admin123') {
+      const userData = {
+        id: '1',
+        username: 'admin',
+        role: 'admin',
+        name: 'Zemenay Admin'
+      };
+    } else {
       return NextResponse.json(
         { error: 'Invalid credentials' },
         { status: 401 }
@@ -46,9 +37,9 @@ export async function POST(request: NextRequest) {
     // Create JWT token
     const token = sign(
       { 
-        userId: data.id, 
-        username: data.username, 
-        role: data.role,
+        userId: userData.id, 
+        username: userData.username, 
+        role: userData.role,
         exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 hours
       },
       JWT_SECRET
@@ -66,10 +57,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       message: 'Login successful',
       user: {
-        id: data.id,
-        username: data.username,
-        role: data.role,
-        name: data.name
+        id: userData.id,
+        username: userData.username,
+        role: userData.role,
+        name: userData.name
       }
     });
 

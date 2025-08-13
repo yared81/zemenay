@@ -76,11 +76,7 @@ const AdminLogin = () => {
             <p className="text-muted-foreground">
               Enter your credentials to access the admin panel
             </p>
-            <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <p className="text-sm text-yellow-800">
-                <strong>Demo Access:</strong> Use admin / admin123 to explore the admin features
-              </p>
-            </div>
+
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -99,7 +95,7 @@ const AdminLogin = () => {
                   value={credentials.username}
                   onChange={handleChange}
                   required
-                  placeholder="admin (default username)"
+                  placeholder="admin"
                   className="w-full"
                 />
               </div>
@@ -114,7 +110,7 @@ const AdminLogin = () => {
                     value={credentials.password}
                     onChange={handleChange}
                     required
-                    placeholder="admin123 (default password)"
+                    placeholder="admin123"
                     className="w-full pr-10"
                   />
                   <button
@@ -137,12 +133,6 @@ const AdminLogin = () => {
             </form>
 
             <div className="mt-6 text-center">
-              <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg mb-4">
-                <p className="text-sm text-blue-800 font-medium mb-2">Demo Credentials for Judges:</p>
-                <p className="text-sm text-blue-700">
-                  <strong>Username:</strong> admin | <strong>Password:</strong> admin123
-                </p>
-              </div>
               <p className="text-sm text-muted-foreground">
                 This is a secure admin area. Only authorized personnel should access this page.
               </p>
