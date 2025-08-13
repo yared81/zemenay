@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Archiv Grotesk Zemenay';
+  src: url('/fonts/Archiv Grotesk Zemenay Font.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-zemenay {
+  font-family: 'Archiv Grotesk Zemenay', 'Inter', sans-serif;
+}
