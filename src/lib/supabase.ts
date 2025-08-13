@@ -107,6 +107,46 @@ export interface EventRegistration {
   status?: 'registered' | 'confirmed' | 'attended' | 'cancelled';
 }
 
+export interface BlogPost {
+  id?: string;
+  title: string;
+  content: string;
+  excerpt: string;
+  author: string;
+  tags: string[];
+  featured_image?: string;
+  status: 'draft' | 'published' | 'archived';
+  published_at?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface NewsArticle {
+  id?: string;
+  title: string;
+  content: string;
+  excerpt: string;
+  author: string;
+  category: string;
+  featured_image?: string;
+  status: 'draft' | 'published' | 'archived';
+  published_at?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface AdminUser {
+  id?: string;
+  username: string;
+  password: string;
+  name: string;
+  email: string;
+  role: 'admin' | 'editor' | 'moderator';
+  is_active: boolean;
+  created_at?: string;
+  last_login?: string;
+}
+
 export interface GameSubmission {
   id?: string;
   title: string;

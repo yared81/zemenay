@@ -27,11 +27,54 @@ const CreateBlogPage = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to your API
-    console.log('Blog data:', formData);
-    alert('Blog post created successfully!');
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      const response = await fetch('/api/admin/blog', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : [],
+          status: formData.status
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitMessage('Blog post created successfully!');
+        // Reset form
+        setFormData({
+          title: '',
+          excerpt: '',
+          content: '',
+          category: '',
+          author: '',
+          tags: '',
+          featured: false,
+          status: 'draft'
+        });
+        // Redirect to blog list after 2 seconds
+        setTimeout(() => {
+          window.location.href = '/admin/blog';
+        }, 2000);
+      } else {
+        setSubmitMessage(data.error || 'Failed to create blog post');
+      }
+    } catch {
+      setSubmitMessage('Network error. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -57,9 +100,9 @@ const CreateBlogPage = () => {
                 <Eye className="h-4 w-4 mr-2" />
                 Preview
               </Button>
-              <Button onClick={handleSubmit} size="sm">
+              <Button onClick={handleSubmit} size="sm" disabled={isSubmitting}>
                 <Save className="h-4 w-4 mr-2" />
-                Publish
+                {isSubmitting ? 'Saving...' : 'Publish'}
               </Button>
             </div>
           </div>
@@ -70,6 +113,15 @@ const CreateBlogPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Form */}
           <div className="lg:col-span-2">
+            {submitMessage && (
+              <div className={`mb-4 p-4 rounded-lg ${
+                submitMessage.includes('successfully') 
+                  ? 'bg-green-50 border border-green-200 text-green-800' 
+                  : 'bg-red-50 border border-red-200 text-red-800'
+              }`}>
+                {submitMessage}
+              </div>
+            )}
             <Card>
               <CardHeader>
                 <CardTitle>Post Content</CardTitle>
