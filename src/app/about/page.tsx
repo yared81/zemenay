@@ -108,8 +108,50 @@ const AboutPage = () => {
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-6">Our Vision</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                To be the leading technology partner in Ethiopia, recognized for our innovation, 
-                reliability, and commitment to transforming how businesses operate in the digital age.
+                To be the leading technology partner in Ethiopia, recognized for excellence, 
+                innovation, and our commitment to transforming the nation&apos;s digital landscape.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-foreground mb-4">Our Leadership Team</h2>
+            <p className="text-xl text-muted-foreground">
+              Experienced professionals dedicated to your success
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="text-center p-6">
+              <div className="w-32 h-32 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Users className="h-16 w-16 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Leadership Team</h3>
+              <p className="text-muted-foreground">
+                Seasoned professionals with decades of combined experience in technology and business.
+              </p>
+            </div>
+            <div className="text-center p-6">
+              <div className="w-32 h-32 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Target className="h-16 w-16 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Expert Consultants</h3>
+              <p className="text-muted-foreground">
+                Specialized consultants who understand your industry and business challenges.
+              </p>
+            </div>
+            <div className="text-center p-6">
+              <div className="w-32 h-32 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <Award className="h-16 w-16 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Certified Professionals</h3>
+              <p className="text-muted-foreground">
+                Certified professionals committed to delivering excellence in every project.
               </p>
             </div>
           </div>
